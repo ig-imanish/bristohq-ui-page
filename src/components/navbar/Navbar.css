@@ -2,9 +2,9 @@
 :root {
   /* Color Palette */
   --color-bg: #0a0a0a;
-  --color-bg-nav: #191919;
+  --color-bg-nav: #0A0A0A;
   --color-bg-nav-hover: #252525;
-  --color-bg-menu: linear-gradient(135deg, #191919 80%, #232323 100%);
+  --color-bg-menu: linear-gradient(135deg, #0A0A0A 80%, #232323 100%);
   --color-bg-search: #232323;
   --color-bg-link-hover: #232323;
   --color-bg-mobile-link-hover: #302f2f;
