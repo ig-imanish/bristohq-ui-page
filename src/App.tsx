@@ -8,6 +8,7 @@ import Templates from './pages/Templates';
 import Contribute from './pages/Contribute';
 import About from './pages/About';
 import Docs from './pages/Docs';
+import { Analytics } from "@vercel/analytics/react";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route path="/contribute" element={<Contribute />} />
         <Route path="/about" element={<About />} />
       </Routes>
+      <Analytics />
     </Router>
   );
 }
