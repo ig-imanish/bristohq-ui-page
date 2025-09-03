@@ -1,16 +1,31 @@
-import "./Button.css"
-export default function Button(props: { variant?: string, label?: string, url?: string, text?: string, onClick?: () => void, className?: string }) {
+import { Link } from "react-router-dom";
+import "./Button.css";
+
+interface ButtonProps {
+  variant?: "primary" | "secondary" | "link";
+  url?: string;
+  text: string;
+  onClick?: () => void;
+}
+
+export default function Button({ variant = "primary", url, text, onClick }: ButtonProps) {
+  const className = `btn btn-${variant}`;
+
+  if (variant === "link" && url) {
+    return (
+      <div className="button-component">
+        <Link to={url} className={className}>
+          {text}
+        </Link>
+      </div>
+    );
+  }
+
   return (
     <div className="button-component">
-      {props.url ? (
-        <a href={props.url} className={`btn btn-${props.variant} ${props.className}`}>
-          {props.text || props.label}
-        </a>
-      ) : (
-        <button onClick={props.onClick} className={`btn btn-${props.variant} ${props.className}`}>
-          {props.label}
-        </button>
-      )}
+      <button className={className} onClick={onClick}>
+        {text}
+      </button>
     </div>
-  )
+  );
 }
