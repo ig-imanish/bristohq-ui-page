@@ -39,7 +39,7 @@ export default function Navbar() {
         </button>
         <div className="left-menu">
           <div className="icon" >
-            <img src="/src/assets/ui-logo-white.png" alt="logo" width="20" height="20" />
+            <img src="/ui-logo-white.png" alt="logo" width="20" height="20" />
             <span style={{ marginLeft: '0.5rem', fontSize: '0.75rem', fontWeight: 500 }}> <Link to="/" style={{ color: 'inherit', textDecoration: 'none' }}>BristoHQ-Ui</Link></span>
           </div>
           <ul>
