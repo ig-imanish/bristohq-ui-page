@@ -15,9 +15,9 @@
 
 .card-new-version {
   background-color: #232323;
-  padding: 0.3rem 0.8rem;
+  padding: 0.15rem 0.5rem;
   border-radius: 50px;
-  font-size: small;
+  font-size: 0.8rem;
   margin-bottom: 1.5rem;
 }
 
@@ -380,6 +380,14 @@
 }
 
 @media (max-width: 600px) {
+  .home-root {
+    padding: 0.5rem;
+  }
+
+  .right-content {
+    padding: 0 0.5rem;
+  }
+
   .left-content h2 {
     font-size: 1.5rem;
     line-height: 1.4;
@@ -417,5 +425,24 @@
   .control-dot {
     width: 10px;
     height: 10px;
+  }
+
+  /* Remove horizontal padding from .home-desc and span in mobile */
+  .home-title {
+    font-size: 2.5rem;
+    padding: 0;
+  }
+  .home-desc {
+    padding: 0 1rem;
+  }
+  .left-content > div:last-child > div span {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .card-new-version {
+    margin-top: 20px;
+    font-size: 0.7rem;
+    padding: 0.08rem 0.35rem;
   }
 }
