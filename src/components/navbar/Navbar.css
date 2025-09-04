@@ -2,9 +2,9 @@
 :root {
   /* Color Palette */
   --color-bg: #0a0a0a;
-  --color-bg-nav: #0A0A0A;
+  --color-bg-nav: #0a0a0a;
   --color-bg-nav-hover: #252525;
-  --color-bg-menu: linear-gradient(135deg, #0A0A0A 80%, #232323 100%);
+  --color-bg-menu: linear-gradient(135deg, #0a0a0a 80%, #232323 100%);
   --color-bg-search: #232323;
   --color-bg-link-hover: #232323;
   --color-bg-mobile-link-hover: #302f2f;
@@ -129,7 +129,7 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: var(--color-bg-menu);
+  background: var(--color-bg);
   z-index: var(--navbar-mobile-menu-z);
   padding: var(--navbar-mobile-menu-padding);
   gap: var(--navbar-mobile-menu-gap);
@@ -142,13 +142,14 @@
   margin-bottom: 0.5rem;
   width: 100%;
   max-width: 400px;
-  background: var(--color-bg-search);
-  border-radius: var(--navbar-mobile-search-radius);
+  /* background: var(--color-bg-search); */
+  /* border-radius: var(--navbar-mobile-search-radius); */
   padding: var(--navbar-mobile-search-padding);
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  box-shadow: 0 2px 8px var(--color-shadow-light);
+  border-bottom: 1px solid var(--color-border-line);
+  /* box-shadow: 0 2px 8px var(--color-shadow-light); */
 }
 .navbar-mobile-menu .search input {
   background: var(--color-input-bg);
