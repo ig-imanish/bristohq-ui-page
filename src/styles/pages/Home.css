@@ -1,5 +1,5 @@
 .home-root {
-  
+
   padding: 2rem;
   width: 100%;
   box-sizing: border-box;
@@ -445,7 +445,8 @@
   .card-new-version {
     margin-top: 20px;
     font-size: 0.7rem;
-    padding: 0.08rem 0.35rem;
+    padding: 0.1rem 0.35rem;
+    padding-left: 15px;
   }
 }
 
