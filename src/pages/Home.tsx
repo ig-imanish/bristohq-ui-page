@@ -1,12 +1,25 @@
-import "../styles/pages/Home.css"
-
+import "../styles/pages/Home.css";
 export default function Home() {
+
+
+
     return (
+
         <div className="home-root">
-            <div className="container">
-                <div className="card-new-version">
-                    <span>New version v2.0 of bristohq/ui has been released!</span>
+            <div className="container" >
+
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                    <div className="card-new-version" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                        <span>New version v2.0 of bristohq/ui has been released!</span>
+                        <div className="loader">
+                            <div className="circle">
+                                <div className="dot"></div>
+                                <div className="outline"></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+
                 <h1 className="home-title">The Foundation for your Design System</h1>
                 <p className="home-desc">
                     A set of beautifully designed components that you can customize, extend, and build on. Start here then make it your own. Open Source. Open Code.
@@ -26,7 +39,7 @@ export default function Home() {
                         <p>Design System</p>
                     </div>
                     <div>
-                        <h2>Build your design system on top of Chakra UI</h2>
+                        <h2 style={{ lineHeight: '1.3' }}>Build your design system on top of <span style={{ color: '#ffffffff', padding: '0px 8px', background: 'rgba(255, 255, 255, 0.18)', borderRadius: '4px', borderRight: '3px solid rgba(255, 255, 255, 1)' }}>BristoHQ UI</span></h2>
                         <p>Spend less time writing UI code and more time building a great experience for your customers.</p>
                         <ul className="feature-list">
                             <li>
