@@ -366,3 +366,12 @@ nav .right-menu ul li .search input:focus {
   color: #d1d1d1; /* lighter grey on focus */
   box-shadow: 0 2px 8px var(--color-shadow-light);
 }
+
+/* Active navbar link */
+nav .left-menu ul .active,
+nav .right-menu ul .active,
+.navbar-mobile-menu ul .active {
+  border-bottom: 2.5px solid #a1a1a1;
+  border-radius: 0px !important;
+  background: none;
+}

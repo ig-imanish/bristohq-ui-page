@@ -4,9 +4,8 @@ import Button from "../button/Button";
 import "./Navbar.css";
 
 const navLinks = [
-  { url: "/docs", text: "Docs" },
-  { url: "/components", text: "Components" },
   { url: "/installation", text: "Installation" },
+  { url: "/components", text: "Components" },
   { url: "/charts", text: "Templates" },
   { url: "/contribute", text: "Contribute" },
   { url: "/about", text: "About Us" },
