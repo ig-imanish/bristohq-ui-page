@@ -186,7 +186,7 @@
   min-width: 500px;
 }
 
-.card {
+.right-content .card {
   background: #0e0f10;
   border: 1px solid #ffffff1a;
   border-radius: 8px;
@@ -195,7 +195,7 @@
   width: 100%;
 }
 
-.card > div:first-child {
+.right-content .card > div:first-child {
   background: #1a1a1a;
   padding: 0.75rem 1rem;
   border-bottom: 1px solid #ffffff1a;

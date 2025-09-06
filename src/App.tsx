@@ -1,5 +1,6 @@
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import './App.css';
+import Footer from './components/footer/Footer';
 import Navbar from './components/navbar/Navbar';
 import About from './pages/About';
 import Components from './pages/Components';
@@ -23,6 +24,7 @@ function App() {
         <Route path="/contribute" element={<Contribute />} />
         <Route path="/about" element={<About />} />
       </Routes>
+      <Footer />
       <Analytics />
     </Router>
   );

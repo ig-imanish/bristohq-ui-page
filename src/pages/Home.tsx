@@ -1,3 +1,4 @@
+import Section from "../components/section/Section";
 import "../styles/pages/Home.css";
 import { useState } from "react";
 
@@ -178,7 +179,11 @@ export default function App() {
                         )}
                     </div>
                 </div>
+
+
+
             </div>
+                <Section />
         </div >
     );
 }
