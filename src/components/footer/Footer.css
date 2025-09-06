@@ -173,13 +173,16 @@
   }
 
   .footer-content {
-    grid-template-columns: 1fr;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     gap: 2rem;
     margin-bottom: 2rem;
   }
 
   .footer-section.newsletter {
+    grid-column: 1 / span 2;
     order: -1;
+    margin-bottom: 1.5rem;
   }
 
   .input-group {
