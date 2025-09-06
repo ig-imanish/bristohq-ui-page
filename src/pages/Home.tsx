@@ -34,6 +34,9 @@ export default function App() {
         setTimeout(() => setCodeCopied(false), 1500);
     };
 
+    // Detect small screen
+    const isSmallScreen = typeof window !== "undefined" && window.matchMedia("(max-width: 600px)").matches;
+
     return (
         <div className="home-root">
             <div className="container" >
@@ -119,38 +122,57 @@ export default function App() {
 
                             </div>
                         </div>
+                        {/* Copy code button: hide on small screens, show only SVG */}
+                        {!isSmallScreen ? (
+                            <button
+                                className="code-copy-button"
+                                onClick={handleCodeCopy}
+                                style={{
+                                    position: "absolute",
+                                    top: "7px",
+                                    right: "18px",
+                                    background: "#232323",
+                                    color: "#fff",
 
-                        <button
-                            className="code-copy-button"
-                            onClick={handleCodeCopy}
-                            style={{
-                                position: "absolute",
-                                top: "7px",
-                                right: "18px",
-                                background: "#232323",
-                                color: "#fff",
+                                    borderRadius: "4px",
+                                    padding: "0.3rem 0.7rem",
+                                    fontSize: "0.95rem",
+                                    cursor: "pointer",
+                                    display: "flex",
+                                    alignItems: "center",
+                                    gap: "0.4rem",
+                                    zIndex: '2',
+                                    border: '1px solid #ffffff1a',
+                                    overflow: 'hidden',
+                                    boxShadow: '0 4px 12px rgba(0, 0, 0, 0.3)',
 
-                                borderRadius: "4px",
-                                padding: "0.3rem 0.7rem",
-                                fontSize: "0.95rem",
-                                cursor: "pointer",
-                                display: "flex",
-                                alignItems: "center",
-                                gap: "0.4rem",
-                                zIndex: '2',
-                                border: '1px solid #ffffff1a',
-                                overflow: 'hidden',
-                                boxShadow: '0 4px 12px rgba(0, 0, 0, 0.3)',
-
-                            }}
-                            title="Copy code"
-                        >
-                            <svg width="18" height="18" viewBox="0 0 20 20" fill="none">
-                                <path d="M7 4V2C7 1.44772 7.44772 1 8 1H16C16.5523 1 17 1.44772 17 2V14C17 14.5523 16.5523 15 16 15H14" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                                <rect x="3" y="5" width="11" height="13" rx="1.5" stroke="currentColor" strokeWidth="1.5" />
-                            </svg>
-                            Copy code
-                        </button>
+                                }}
+                                title="Copy code"
+                            >
+                                <svg width="18" height="18" viewBox="0 0 20 20" fill="none">
+                                    <path d="M7 4V2C7 1.44772 7.44772 1 8 1H16C16.5523 1 17 1.44772 17 2V14C17 14.5523 16.5523 15 16 15H14" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                                    <rect x="3" y="5" width="11" height="13" rx="1.5" stroke="currentColor" strokeWidth="1.5" />
+                                </svg>
+                                Copy code
+                            </button>
+                        ) : (
+                            <span
+                                style={{
+                                    position: "absolute",
+                                    top: "14px",
+                                    right: "18px",
+                                    zIndex: '2',
+                                    display: "flex",
+                                    alignItems: "center",
+                                }}
+                                title="Copy code"
+                            >
+                                <svg width="18" height="18" viewBox="0 0 20 20" fill="none">
+                                    <path d="M7 4V2C7 1.44772 7.44772 1 8 1H16C16.5523 1 17 1.44772 17 2V14C17 14.5523 16.5523 15 16 15H14" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                                    <rect x="3" y="5" width="11" height="13" rx="1.5" stroke="currentColor" strokeWidth="1.5" />
+                                </svg>
+                            </span>
+                        )}
                         <pre style={{ position: "relative" }}>
                             <span className="keyword">import</span><span className="punctuation"> &#123; </span><span className="component">Button</span><span className="punctuation"> &#125; </span><span className="keyword">from</span><span className="string"> "@bristohq/ui"</span><span className="punctuation">;</span>
                             {'\n\n'}
@@ -166,7 +188,6 @@ export default function App() {
                             {'\n'}  <span className="punctuation">);</span>
                             {'\n'}<span className="punctuation">&#125;</span>
                         </pre>
-
                         {codeCopied && (
                             <div className="copied-popup">
                                 <span className="popup-icon">
@@ -180,11 +201,8 @@ export default function App() {
                         )}
                     </div>
                 </div>
-
-
-
             </div>
-                <Section />
+            <Section />
         </div >
     );
 }
