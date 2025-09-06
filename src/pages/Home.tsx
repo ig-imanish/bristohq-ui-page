@@ -121,6 +121,7 @@ export default function App() {
                         </div>
 
                         <button
+                            className="code-copy-button"
                             onClick={handleCodeCopy}
                             style={{
                                 position: "absolute",

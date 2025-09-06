@@ -446,6 +446,16 @@
     padding: 0.1rem 0.35rem;
     padding-left: 15px;
   }
+
+  .right-content .card button[title="Copy code"] {
+    padding: 1rem 0.28rem;
+    font-size: 0.62rem;
+    top: 6px !important;
+    right: 4px !important;
+    border-radius: 2px;
+    min-width: 0;
+    line-height: 1.2;
+  }
 }
 
 .loader {
