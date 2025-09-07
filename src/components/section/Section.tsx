@@ -7,6 +7,16 @@ export default function Section() {
     const [contributors, setContributors] = useState<number | null>(null);
 
     useEffect(() => {
+
+        // https://api.github.com/repos/BristoHQ/ui/contributors
+
+        const fetchContributors = async () => {
+            const response = await fetch("https://api.github.com/repos/bristohq/ui/contributors");
+            const data = await response.json();
+            setContributors(Array.isArray(data) ? data.length : null);
+        };
+        fetchContributors();
+
         const fetchNpmDownloads = async () => {
             try {
                 const res = await fetch("https://api.npmjs.org/downloads/point/last-month/@bristohq/ui");
@@ -19,31 +29,12 @@ export default function Section() {
         };
         fetchNpmDownloads();
 
-        const fetchGithubStats = async () => {
-            try {
-                const repoRes = await fetch("https://api.github.com/repos/bristohq/ui");
-                const repoData = await repoRes.json();
-                setGithubStars(repoData.stargazers_count);
-
-                const contribRes = await fetch("https://api.github.com/repos/bristohq/ui/contributors?per_page=1");
-                const linkHeader = contribRes.headers.get("Link");
-                if (linkHeader) {
-                    // Parse last page number from Link header
-                    const match = linkHeader.match(/&page=(\d+)>; rel="last"/);
-                    setContributors(match ? parseInt(match[1], 10) : null);
-                } else {
-                    // Fallback: count from returned array
-                    const contribData = await contribRes.json();
-                    setContributors(Array.isArray(contribData) ? contribData.length : null);
-                }
-            } catch (err) {
-                console.log("Error fetching GitHub stats:", err);
-
-                setGithubStars(null);
-                setContributors(null);
-            }
+        const fetchGithubStars = async () => {
+            const response = await fetch("https://api.github.com/repos/bristohq/ui");
+            const data = await response.json();
+            setGithubStars(data.stargazers_count);
         };
-        fetchGithubStats();
+        fetchGithubStars();
     }, []);
 
     return (
@@ -76,7 +67,7 @@ export default function Section() {
                     <div className="corner corner-bottom-left"></div>
                     <div className="corner corner-bottom-right"></div>
                     <h1>
-                        {githubStars !== null ? githubStars.toLocaleString() : "—"}
+                        {githubStars !== null ? githubStars.toLocaleString() : "0"}
                     </h1>
                     <p>
                         <svg focusable="false" aria-hidden="true" className="chakra-icon css-1t5f6nh" stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 16 16" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8"></path></svg>
@@ -89,7 +80,7 @@ export default function Section() {
                     <div className="corner corner-bottom-left"></div>
                     <div className="corner corner-bottom-right"></div>
                     <h1>
-                        {contributors !== null ? contributors.toLocaleString() : "—"}
+                        {contributors !== null ? contributors.toLocaleString() : "1"}
                     </h1>
                     <p>
                         <svg focusable="false" aria-hidden="true" className="chakra-icon css-1t5f6nh" stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 16 16" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8"></path></svg>
