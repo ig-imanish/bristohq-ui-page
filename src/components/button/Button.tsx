@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import "./Button.css";
 
 interface ButtonProps {
@@ -9,7 +9,9 @@ interface ButtonProps {
 }
 
 export default function Button({ variant = "primary", url, text, onClick }: ButtonProps) {
-  const className = `btn btn-${variant}`;
+  const location = useLocation();
+  const isActive = url && location.pathname === url;
+  const className = `btn btn-${variant}${isActive ? " active" : ""}`;
 
   if (variant === "link" && url) {
     return (

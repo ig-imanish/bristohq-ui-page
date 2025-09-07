@@ -15,10 +15,11 @@
 
 .card-new-version {
   background-color: #232323;
-  padding: 0.3rem 0.8rem;
+  padding: 0.15rem 0.5rem;
   border-radius: 50px;
-  font-size: small;
+  font-size: 0.8rem;
   margin-bottom: 1.5rem;
+  padding-left: 15px;
 }
 
 .home-title {
@@ -185,7 +186,7 @@
   min-width: 500px;
 }
 
-.card {
+.right-content .card {
   background: #0e0f10;
   border: 1px solid #ffffff1a;
   border-radius: 8px;
@@ -194,7 +195,7 @@
   width: 100%;
 }
 
-.card > div:first-child {
+.right-content .card > div:first-child {
   background: #1a1a1a;
   padding: 0.75rem 1rem;
   border-bottom: 1px solid #ffffff1a;
@@ -380,6 +381,14 @@
 }
 
 @media (max-width: 600px) {
+  .home-root {
+    padding: 0.5rem;
+  }
+
+  .right-content {
+    padding: 0 0.5rem;
+  }
+
   .left-content h2 {
     font-size: 1.5rem;
     line-height: 1.4;
@@ -417,5 +426,219 @@
   .control-dot {
     width: 10px;
     height: 10px;
+  }
+
+  .home-title {
+    font-size: 2.5rem;
+    padding: 0;
+  }
+  .home-desc {
+    padding: 0 1rem;
+  }
+  .left-content > div:last-child > div span {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .card-new-version {
+    margin-top: 20px;
+    font-size: 0.7rem;
+    padding: 0.1rem 0.35rem;
+    padding-left: 15px;
+  }
+
+  .right-content .card button[title="Copy code"] {
+    padding: 1rem 0.28rem;
+    font-size: 0.62rem;
+    top: 6px !important;
+    right: 4px !important;
+    border-radius: 2px;
+    min-width: 0;
+    line-height: 1.2;
+  }
+}
+
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  --color: hsl(0, 0%, 87%);
+  --animation: 2s ease-in-out infinite;
+}
+
+.loader .circle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 8px;
+  height: 8px;
+  border: solid 2px var(--color);
+  border-radius: 50%;
+  margin: 0 10px;
+  background-color: transparent;
+  animation: circle-keys var(--animation);
+}
+
+.loader .circle .dot {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background-color: var(--color);
+  animation: dot-keys var(--animation);
+}
+
+.loader .circle .outline {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  animation: outline-keys var(--animation);
+}
+
+.circle:nth-child(2) {
+  animation-delay: 0.3s;
+}
+
+.circle:nth-child(3) {
+  animation-delay: 0.6s;
+}
+
+.circle:nth-child(4) {
+  animation-delay: 0.9s;
+}
+
+.circle:nth-child(5) {
+  animation-delay: 1.2s;
+}
+
+.circle:nth-child(2) .dot {
+  animation-delay: 0.3s;
+}
+
+.circle:nth-child(3) .dot {
+  animation-delay: 0.6s;
+}
+
+.circle:nth-child(4) .dot {
+  animation-delay: 0.9s;
+}
+
+.circle:nth-child(5) .dot {
+  animation-delay: 1.2s;
+}
+
+.circle:nth-child(1) .outline {
+  animation-delay: 0.9s;
+}
+
+.circle:nth-child(2) .outline {
+  animation-delay: 1.2s;
+}
+
+.circle:nth-child(3) .outline {
+  animation-delay: 1.5s;
+}
+
+.circle:nth-child(4) .outline {
+  animation-delay: 1.8s;
+}
+
+.circle:nth-child(5) .outline {
+  animation-delay: 2.1s;
+}
+
+@keyframes circle-keys {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  50% {
+    transform: scale(1.5);
+    opacity: 0.5;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes dot-keys {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(0);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes outline-keys {
+  0% {
+    transform: scale(0);
+    outline: solid 20px var(--color);
+    outline-offset: 0;
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(1);
+    outline: solid 0 transparent;
+    outline-offset: 20px;
+    opacity: 0;
+  }
+}
+
+.copied-popup {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  position: fixed;
+  top: 1.5rem;
+  right: 2rem;
+  background: #1f7a3a;
+  color: #fff;
+  padding: 0.6rem 1rem;
+  border-radius: 6px;
+  font-size: 1.05rem;
+  font-weight: 600;
+  box-shadow: 0 4px 16px rgba(34, 197, 94, 0.18), 0 2px 12px #0007;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 1;
+  border: 1px solid #27ae60;
+  animation: popup-fade-in 0.2s;
+}
+
+.copied-popup .popup-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  background: #27ae60;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  font-size: 1.2rem;
+  box-shadow: 0 2px 8px #27ae6040;
+}
+
+@keyframes popup-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
