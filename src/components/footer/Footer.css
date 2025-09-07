@@ -207,11 +207,27 @@
   }
 
   .footer-container {
-    padding: 0 0.75rem;
+    /* padding: 0 0.75rem; */
+    padding: 0 20px;
   }
 
   .footer-content {
     gap: 1.5rem;
+  }
+
+  /* Center footer-section links */
+  .footer-section {
+    text-align: center;
+  }
+  .footer-section ul {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .footer-section ul li {
+    width: 100%;
+    text-align: center;
   }
 
   .footer-section h3 {

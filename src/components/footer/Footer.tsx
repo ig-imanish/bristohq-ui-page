@@ -1,18 +1,46 @@
 import React, { useState } from 'react'
 import { Link } from "react-router-dom";
 import "./Footer.css";
+import { db } from "../../firebase";
+import { collection, addDoc, Timestamp, query, where, getDocs } from "firebase/firestore";
+
+const validateEmail = (email: string) => {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+};
 
 export default function Footer() {
     const [email, setEmail] = useState('');
     const [subscribed, setSubscribed] = useState(false);
+    const [loading, setLoading] = useState(false);
 
-    const handleSubscribe = (e: React.FormEvent) => {
+    const handleSubscribe = async (e: React.FormEvent) => {
         e.preventDefault();
-        if (email) {
+        if (!validateEmail(email)) {
+            alert("Please enter a valid email address.");
+            return;
+        }
+        setLoading(true);
+        try {
+            // Check for duplicate email
+            const q = query(collection(db, "newsletter"), where("email", "==", email));
+            const querySnapshot = await getDocs(q);
+            if (!querySnapshot.empty) {
+                alert("This email is already subscribed.");
+                setLoading(false);
+                return;
+            }
+            await addDoc(collection(db, "newsletter"), {
+                email,
+                createdAt: Timestamp.now()
+            });
             setSubscribed(true);
             setTimeout(() => setSubscribed(false), 3000);
             setEmail('');
+        } catch (err) {
+            console.error("Error subscribing email:", err);
+            alert("Failed to subscribe. Please try again.");
         }
+        setLoading(false);
     };
 
     return (
@@ -31,9 +59,10 @@ export default function Footer() {
                                     value={email}
                                     onChange={(e) => setEmail(e.target.value)}
                                     required
+                                    disabled={loading}
                                 />
-                                <button className="subscribe-button" type="submit">
-                                    {subscribed ? 'Subscribed!' : 'Subscribe'}
+                                <button className="subscribe-button" type="submit" disabled={loading}>
+                                    {loading ? "Subscribing..." : subscribed ? 'Subscribed!' : 'Subscribe'}
                                 </button>
                             </div>
                         </form>
@@ -92,7 +121,7 @@ export default function Footer() {
                         <span>BristoHQ UI</span>
                     </div>
                     <div className="footer-copyright">
-                        Copyright © {new Date().getFullYear()} BristoHQ, trading as BristoHQ UI.
+                        Copyright © {new Date().getFullYear()} <span style={{ color: "#b0b0b0" }}>BristoHQ</span>.
                     </div>
                     <div className="footer-social">
                         <a href="https://github.com/bristohq/ui" aria-label="GitHub">
